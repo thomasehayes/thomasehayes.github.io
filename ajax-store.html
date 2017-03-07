@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Store</title>
+    <link rel="stylesheet" type="text/css" href="/css/ajax-store.css">
+</head>
+<body>
+<div id="container">
+    <h1>My Tool Store</h1>
+    <div id="refresh-btn">
+        <button id="refresh">Refresh</button>
+    </div>
+    <table id="products">
+        <thead>
+            <tr>
+                <th class="headerWidth">Title</th>
+                <th class="headerWidth">Quantity</th>
+                <th class="headerWidth">Price</th>
+                <th class="headerWidth">Categories</th>
+            </tr>
+        </thead>
+        <tbody id="insertProducts"></tbody>
+    </table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+(function() {
+    "use strict";
+    // TODO: Create an ajax GET request for /data/inventory.json
+
+    // TODO: Take the data from inventory.json and append it to the products table
+    //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+    //             its contents and fields
+    //       HINT: You will want to target #insertProducts for your new HTML elements
+
+//======================================
+//         Retrieving JSON Data
+//======================================
+
+    var request =$.ajax ({
+        url: "/data/inventory.json",
+        type: "GET"
+    });
+
+    request.done(function(data){
+        data.forEach(function(tool, index){            
+            $("#insertProducts").append("<tr>"+ "<td>"+ tool.title+ "</td>" + "<td class='quantity'>" +tool.quantity + "</td>" +  "<td class='price'>" + tool.price + "</td>"+ "<td>" + tool.categories + "</td>" + "</tr>");
+        });
+
+    });
+
+    request.fail(function(data, status){
+        console.log(status);
+    });
+
+//======================================
+//         Refresh Ajax
+//======================================
+
+    $("#refresh").click(function(){
+        var request =$.ajax ({
+        url: "/data/inventory.json",
+        type: "GET"
+    });
+    request.done(function(data){
+        $("#insertProducts").html("");
+        data.forEach(function(tool, index){            
+            $("#insertProducts").append("<tr>"+ "<td>"+ tool.title+ "</td>" + "<td class='quantity'>" +tool.quantity + "</td>" +  "<td class='price'>" + tool.price + "</td>"+ "<td>" + tool.categories + "</td>" + "</tr>");
+        });
+
+    });
+
+    request.fail(function(){
+        console.log(status);
+    });
+    });
+
+
+
+
+
+
+//======================================
+//         Ryan's Methodology
+//======================================
+    // var url = "/data/inventory.json";
+    // var request = $.get(url);
+
+    // request.fail(function(data, status){
+    //     console.log(status);
+    // });
+
+    // request.done(function(data){
+    //     console.log(data);
+
+    //     //Step 1
+    //     var tool = data[0];
+
+    //     var htmlString = "";
+    //     htmlString += "<tr>";
+    //     htmlString += "td" + tool.title + "</td>";
+    //     htmlString += "td" + tool.quantity + "</td>";
+    //     htmlString += "td" + tool.price + "</td>";
+    //     htmlString += "td" + tool.categories + "</td>";
+    //     htmlString += "</tr>";
+    //     // since we have to repeat this multiple times to append each tool then a for or foreach loop is needed
+    //     $("#insertProducts").append(htmlString);
+    // });
+
+})();
+</script>
+
+</body>
+</html>

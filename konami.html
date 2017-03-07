@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"
+  	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  	crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="css/konami.css">
+
+</head>
+<body>
+<body id="universe">
+        
+        <div id="stars"></div>
+        <div id="test">
+        <h1>Making it Count</h1>
+        <hr>
+        <h4>Up, Up, Down, Down, Left, Right, Left, Right, b, a, Enter</h4>
+        </div>
+        <div id="sun"></div>
+        <div id="earthOrbit">
+            <img src="images/earth.png" alt="Earth" id="earth">
+            <div id="moonOrbit">
+                <div id="moon"></div>
+            </div>
+        <div id="marsOrbit">
+            <div id="mars">
+        </div>
+        </div>
+
+
+
+
+    <script src="js/jquery.js"></script>
+
+    <script>
+        "use strict";
+        $(document).ready(function(){
+
+    		var konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+    		var keys= [];
+
+        $(document).keyup(function(event){
+            console.log(event.keyCode);
+
+        keys.push(event.keyCode);
+            if(keys.length > konami.length) {
+            	keys.shift();
+            }
+
+            if(keys.toString() == konami.toString()) {
+                $("body").fadeOut(1000, redirectPage);
+
+            	function redirectPage() {window.open("https://www.youtube.com/v/WxfZkMm3wcg?rel=o&autoplay=1", "_self");
+            }
+            }
+        });
+    });
+  
+    </script>
+</body>
+</html>
