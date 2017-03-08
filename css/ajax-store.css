@@ -1,0 +1,46 @@
+body {
+	background-color: #999;
+}
+#container {
+	margin: auto;
+	width: 800px;
+	height: 100%;
+	background-color: white;
+	border-radius: 10px;
+}
+thead {
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+	text-decoration: underline;
+}
+#products{
+	border: 1px solid black;
+	margin: 0 auto;
+	border-radius: 3px;
+}
+
+
+th {
+	text-decoration: underline;
+}
+
+td{
+	border: solid 1px black;
+	width: 200px;
+}
+
+.headerWidth {
+	width: 100px;
+
+}
+
+tbody>tr>td.quantity {
+	text-align: right;
+}
+
+tbody>tr>td.price {
+	text-align: right;
+}
